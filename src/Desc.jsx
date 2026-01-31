@@ -4,13 +4,10 @@ function Desc() {
     return (
         <>
             <h1>Bell Schedule</h1>
-            <span>
-                Created by
-                <a href="https://github.com/KyteKode">
-                    KyteKode
-                    <img src={KyteKodeImageLink} alt="" width="20" id="KyteKodeImage"></img>
-                </a>
-            </span>
+            <a href="https://github.com/KyteKode" id="CreatedBy">
+                <img src={KyteKodeImageLink} alt="" id="KyteKodeImage"></img>
+                Created by KyteKode
+            </a>
 
             <br /><br />
 

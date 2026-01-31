@@ -6,6 +6,14 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
 h1 {
     font-size: 3rem;
     margin: 1.5rem;
@@ -17,11 +25,24 @@ span, p {
     margin-left: 1.5rem;
 }
 
-#KyteKodeImage {
-    margin: 0.3rem;
-    margin-left: 0.8rem;
+#CreatedBy {
+    font-size: 1.25rem;
+    width: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
 
-    vertical-align: middle;
+#KyteKodeImage {
+    display: block;
+    margin: 0 auto;
+    width: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    border: 5px solid rgb(165, 110, 50);
 }
 
 
