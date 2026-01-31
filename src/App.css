@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-color: rgb(20, 20, 30);
+    color: rgb(255, 255, 255);
+    font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 1.5rem;
+}
+
+span, p {
+    font-size: 1.25rem;
+    margin: 0.2rem;
+    margin-left: 1.5rem;
+}
+
+#KyteKodeImage {
+    margin: 0.3rem;
+    margin-left: 0.8rem;
+
+    vertical-align: middle;
+}
+
+
+
+a {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.25rem;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+a:not(:visited) {
+    color: rgb(75, 195, 255);
+}
+
+a:visited {
+    color: rgb(150, 125, 255);
+}
+
+a:hover:not(:visited) {
+    color: rgb(75, 150, 255);
+    animation: AHover 200ms ease forwards;
+}
+
+a:visited:hover {
+    color: rgb(125, 100, 255);
+    animation: AHover 200ms ease forwards;
+}
+
+@keyframes AHover {
+    0% {
+        transform: scale(1);
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+    }
+    100% {
+        transform: scale(1.2);
+        margin-left: 1.2rem;
+        margin-right: 1.2rem;
+    }
+}
