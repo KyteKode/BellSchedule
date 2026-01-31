@@ -14,7 +14,7 @@ function Desc() {
 
             <br /><br />
 
-            <p>Bell schedule is an app that is used for looking at how much time is left until your next period.</p> <br />
+            <p>Bell schedule is an app that is used for looking at how much time is left until your next class period.</p> <br />
             <span>
                 I got bored in class often and just wanted to look at how much time is left until next class,
                 but I got tired of going to <a href="https://time.is">time.is</a> all the time.
