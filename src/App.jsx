@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 
-import "./App.css"
+import "./App.scss"
 
 import Desc from "./Desc.jsx"
 import ClassPeriodList from "./ClassPeriod/ClassPeriodList.jsx"

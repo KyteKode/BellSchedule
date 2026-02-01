@@ -32,24 +32,21 @@ a {
     font-size: 1.25rem;
     margin-left: 0.3rem;
     margin-right: 0.3rem;
-}
 
-a:not(:visited) {
     color: rgb(75, 195, 255);
-}
 
-a:visited {
-    color: rgb(150, 125, 255);
-}
+    &:hover {
+        color: rgb(75, 150, 255);
+        animation: AHover 200ms ease forwards;
+    }
 
-a:hover:not(:visited) {
-    color: rgb(75, 150, 255);
-    animation: AHover 200ms ease forwards;
-}
+    &:visited {
+        color: rgb(150, 125, 255);
 
-a:visited:hover {
-    color: rgb(125, 100, 255);
-    animation: AHover 200ms ease forwards;
+        &:hover {
+            color: rgb(125, 100, 255);
+        }
+    }
 }
 
 @keyframes AHover {

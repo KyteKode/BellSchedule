@@ -11,10 +11,10 @@
 
     color: white;
     text-decoration: none;
-}
 
-#CreatedBy:hover {
-    animation: CreatedByHover 200ms ease forwards;
+    &:hover {
+        animation: CreatedByHover 200ms ease forwards;
+    }
 }
 
 #KyteKodeImage {

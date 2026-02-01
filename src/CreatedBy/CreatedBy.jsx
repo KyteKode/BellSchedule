@@ -1,4 +1,4 @@
-import "./CreatedBy.css"
+import "./CreatedBy.scss"
 
 function CreatedByKyteKode() {
     const KyteKodeImageLink = "https://avatars.githubusercontent.com/u/231786375?s=96&v=4";
