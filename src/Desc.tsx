@@ -1,4 +1,4 @@
-import CreatedByKyteKode from "./CreatedBy/CreatedBy.jsx";
+import CreatedByKyteKode from "./CreatedBy/CreatedBy";
 
 function Desc() {
     const KyteKodeImageLink = "https://avatars.githubusercontent.com/u/231786375?s=96&v=4";

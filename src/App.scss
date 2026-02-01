@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    background-color: rgb(20, 20, 30);
-    color: rgb(255, 255, 255);
+    background-color: #14141e;
+    color: white;
     font-family: "Montserrat", sans-serif;
 }
 
@@ -33,35 +33,25 @@ a {
     margin-left: 0.3rem;
     margin-right: 0.3rem;
 
-    color: rgb(75, 195, 255);
+    color: #4bc3ff;
+
+    transition: transform 200ms ease, margin-left 200ms ease, margin-right 200ms ease;
 
     &:hover {
-        color: rgb(75, 150, 255);
-        animation: AHover 200ms ease forwards;
-    }
-
-    &:visited {
-        color: rgb(150, 125, 255);
-
-        &:hover {
-            color: rgb(125, 100, 255);
-        }
-    }
-}
-
-@keyframes AHover {
-    0% {
-        transform: scale(1);
-        margin-left: 0.3rem;
-        margin-right: 0.3rem;
-    }
-    100% {
+        color: #4b96ff;
         transform: scale(1.2);
         margin-left: 1.2rem;
         margin-right: 1.2rem;
     }
-}
 
+    &:visited {
+        color: #967dff;
+
+        &:hover {
+            color: #7d64ff;
+        }
+    }
+}
 /*
 Source - https://stackoverflow.com/a/22559163
 Posted by swehren, modified by community. See post 'Timeline' for change history

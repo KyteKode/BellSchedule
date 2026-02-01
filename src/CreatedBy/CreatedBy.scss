@@ -12,8 +12,12 @@
     color: white;
     text-decoration: none;
 
+    transition: transform 200ms ease, margin-top 200ms ease, margin-bottom 200ms ease;
+
     &:hover {
-        animation: CreatedByHover 200ms ease forwards;
+        transform: scale(1.2);
+        margin-top: 2rem;
+        margin-bottom: 4rem;
     }
 }
 
@@ -24,17 +28,4 @@
     width: 10rem;
     border-radius: 50%;
     border: 5px solid rgb(165, 110, 50);
-}
-
-@keyframes CreatedByHover {
-    0% {
-        transform: scale(1);
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-    100% {
-        transform: scale(1.2);
-        margin-top: 2rem;
-        margin-bottom: 4rem;
-    }
 }

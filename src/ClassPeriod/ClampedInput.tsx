@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+interface ClampedInputProps {
+  min: number;
+  max: number;
+  placeholder: string;
+  value: number;
+  setValue: (value: number) => void;
+}
 
-function ClampedInput({min, max, placeholder, value, setValue}) {
-    const handleChange = (e) => {
+function ClampedInput({ min, max, placeholder, value, setValue }: ClampedInputProps) {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let val = e.target.value;
         if (val === "") {
-            setValue("");
+            setValue(min);
             return;
         }
         const num = Number(val);
