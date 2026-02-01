@@ -1,0 +1,40 @@
+#CreatedBy {
+    font-size: 1.25rem;
+    width: 12rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    color: white;
+    text-decoration: none;
+}
+
+#CreatedBy:hover {
+    animation: CreatedByHover 200ms ease forwards;
+}
+
+#KyteKodeImage {
+    display: block;
+    margin: 0 auto;
+    width: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    border: 5px solid rgb(165, 110, 50);
+}
+
+@keyframes CreatedByHover {
+    0% {
+        transform: scale(1);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    100% {
+        transform: scale(1.2);
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+    }
+}

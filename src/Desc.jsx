@@ -1,13 +1,12 @@
+import CreatedByKyteKode from "./CreatedBy/CreatedBy.jsx";
+
 function Desc() {
     const KyteKodeImageLink = "https://avatars.githubusercontent.com/u/231786375?s=96&v=4";
 
     return (
         <>
-            <h1>Bell Schedule</h1>
-            <a href="https://github.com/KyteKode" id="CreatedBy">
-                <img src={KyteKodeImageLink} alt="" id="KyteKodeImage"></img>
-                Created by KyteKode
-            </a>
+            <h1>KyteKode's Bell Schedule</h1>
+            <CreatedByKyteKode />
 
             <br /><br />
 
