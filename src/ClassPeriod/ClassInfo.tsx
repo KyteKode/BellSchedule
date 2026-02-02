@@ -1,22 +1,21 @@
-import { useState, useRef } from 'react'
-
 import TimePicker, { Time, AMPM } from "./TimePicker"
 
-interface ClassInfo {
+interface ClassInfoType {
     name: string,
     period: string,
     room: string,
     start: Time,
     end: Time
 }
+
 interface ClassInfoProps {
-    value: ClassInfo,
-    setValue: (value: ClassInfo) => void,
+    value: ClassInfoType,
+    setValue: (value: ClassInfoType) => void,
     deleteClass: () => void
 }
 
 function ClassInfoComponent({ value, setValue, deleteClass }: ClassInfoProps) {
-    const handleChange = (key: keyof ClassInfo, newValue: any) => {
+    const handleChange = (key: keyof ClassInfoType, newValue: any) => {
         setValue({
             ...value,
             [key]: newValue,
@@ -73,4 +72,4 @@ function ClassInfoComponent({ value, setValue, deleteClass }: ClassInfoProps) {
 }
 
 export default ClassInfoComponent
-export { ClassInfo }
+export { ClassInfoType }

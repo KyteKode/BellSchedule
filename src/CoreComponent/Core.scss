@@ -1,0 +1,18 @@
+#CurrentClass {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    border: 5px solid #0a0a0f;
+    border-radius: 50px;
+    background-color: #28283c;
+
+    padding: 0rem;
+    padding-top: 1rem;
+
+    min-width: 10rem;
+    min-height: 6rem;
+
+    width: fit-content;
+}

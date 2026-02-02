@@ -1,17 +1,17 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 import "./ClassPeriodList.scss"
 
-import ClassInfoComponent, { ClassInfo } from "./ClassInfo"
+import ClassInfoComponent, { ClassInfoType } from "./ClassInfo"
 import { Time, AMPM } from "./TimePicker"
 
 interface ClassPeriodProps {
-    value: ClassInfo[],
-    setValue: (value: ClassInfo[]) => void
+    classes: ClassInfoType[],
+    setClasses: (value: ClassInfoType[]) => void
 }
 
-function ClassPeriodList({ value, setValue}: ClassPeriodProps) {
-    const [classInfo, setClassInfo] = useState<ClassInfo>({
+function ClassPeriodList({ classes, setClasses }: ClassPeriodProps) {
+    const [classInfo, setClassInfo] = useState<ClassInfoType>({
         name: "Class",
         period: "1",
         room: "1",
@@ -21,18 +21,18 @@ function ClassPeriodList({ value, setValue}: ClassPeriodProps) {
 
     const addClass = () => {
         let newClass = {...classInfo};
-        setValue([...value, newClass]);
+        setClasses([...classes, newClass]);
     };
 
-    const setClassValue = (newVal: ClassInfo, idx: number) => {
-        const updated = [...value];
+    const setClassValue = (newVal: ClassInfoType, idx: number) => {
+        const updated = [...classes];
         updated[idx] = newVal;
-        setValue(updated);
+        setClasses(updated);
     }
 
     const deleteClass = (idx: number) => {
-        setValue(
-            value.filter((_, i) => i != idx)
+        setClasses(
+            classes.filter((_, i) => i != idx)
         );
     }
 
@@ -40,11 +40,11 @@ function ClassPeriodList({ value, setValue}: ClassPeriodProps) {
         <div id="ClassPeriodList">
             <button onClick={addClass} id="AddClassButon">Add Class</button>
             <div id="Classes">
-                {value.map((item, idx) => (
+                {classes.map((item, idx) => (
                     <ClassInfoComponent
                         key={idx}
                         value={item}
-                        setValue={(newVal: ClassInfo) => setClassValue(newVal, idx)}
+                        setValue={(newVal: ClassInfoType) => setClassValue(newVal, idx)}
                         deleteClass={() => {deleteClass(idx)}}
                     />
                 ))}
