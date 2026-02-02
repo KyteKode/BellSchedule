@@ -80,6 +80,12 @@ function CurrentClass({ classes }: CurrentClassProps) {
         remainder %= 60000;
         let seconds = Math.round(remainder / 1000);
 
+        let padded_mins = String(minutes);
+        if (padded_mins.length == 1) { padded_mins = " " + padded_mins; }
+
+        let padded_secs = String(minutes);
+        if (padded_secs.length == 1) { padded_secs = " " + padded_secs; }
+
         return String(hours)+":"+String(minutes)+":"+String(seconds);
     }
 
