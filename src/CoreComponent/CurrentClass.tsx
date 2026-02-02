@@ -14,8 +14,6 @@ interface Hour24Time {
     minute: number
 }
 
-// TODO: finish hour12 to hour24, finish CurrentClass component
-
 function hour12_to_date(time: Time) {
     let hour24 = time.hour;
     

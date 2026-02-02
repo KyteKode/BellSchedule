@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import "./ClassPeriodList.scss"
 
@@ -21,7 +21,8 @@ function ClassPeriodList({ classes, setClasses }: ClassPeriodProps) {
 
     const addClass = () => {
         let newClass = {...classInfo};
-        setClasses([...classes, newClass]);
+        let updated = [...classes, newClass];
+        setClasses(updated);
     };
 
     const setClassValue = (newVal: ClassInfoType, idx: number) => {
@@ -31,9 +32,8 @@ function ClassPeriodList({ classes, setClasses }: ClassPeriodProps) {
     }
 
     const deleteClass = (idx: number) => {
-        setClasses(
-            classes.filter((_, i) => i != idx)
-        );
+        let updated = classes.filter((_, i) => i != idx);
+        setClasses(updated);
     }
 
     return (  

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import "./App.scss"
 
@@ -10,6 +10,17 @@ import { ClassInfoType } from "./ClassPeriod/ClassInfo"
 
 function App() {
     const [classes, setClasses] = useState<ClassInfoType[]>([]);
+
+    useEffect(() => {
+        let storedClasses = localStorage.getItem("classes");
+        if (storedClasses) {
+            setClasses(JSON.parse(storedClasses));
+        } 
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("classes", JSON.stringify(classes));
+    }, [classes])
 
     return (  
         <>
