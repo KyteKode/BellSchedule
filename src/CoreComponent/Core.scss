@@ -1,5 +1,5 @@
 #CurrentClass {
-    margin: 3rem;
+    margin: 2rem;
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
@@ -11,8 +11,12 @@
     padding: 0rem;
     padding-top: 1rem;
 
-    min-width: 10rem;
+    min-width: 18rem;
     min-height: 6rem;
 
-    width: fit-content;
+    text-align: center;
+
+    span {
+        margin: 0 auto;
+    }
 }

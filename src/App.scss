@@ -52,18 +52,3 @@ a {
         }
     }
 }
-
-/*
-Source - https://stackoverflow.com/a/22559163
-Posted by swehren, modified by community. See post 'Timeline' for change history
-Retrieved 2026-01-31, License - CC BY-SA 3.0
-*/
-
-input[type='number'] {
-    -moz-appearance:textfield;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
