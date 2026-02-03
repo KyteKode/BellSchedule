@@ -129,10 +129,10 @@ function CurrentClass({ classes }: CurrentClassProps) {
         let seconds = Math.round(remainder / 1000);
 
         let padded_mins = String(minutes);
-        if (padded_mins.length == 1) { padded_mins = " " + padded_mins; }
+        if (padded_mins.length == 1) { padded_mins = "0" + padded_mins; }
 
         let padded_secs = String(seconds);
-        if (padded_secs.length == 1) { padded_secs = " " + padded_secs; }
+        if (padded_secs.length == 1) { padded_secs = "0" + padded_secs; }
 
         return String(hours)+":"+String(padded_mins)+":"+String(padded_secs);
     }
