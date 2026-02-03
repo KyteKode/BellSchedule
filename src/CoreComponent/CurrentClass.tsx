@@ -30,41 +30,45 @@ function hour12_to_date(time: Time) {
     return date;
 }
 
+const NO_CLASS = {
+        name: "ERROR",
+        period: "ERROR",
+        room: "ERROR",
+        start: { hour: 99999, minute: 99999, ampm: AMPM.PM},
+        end: { hour: 99999, minute: 99999, ampm: AMPM.PM }
+    } as const;
+
 function CurrentClass({ classes }: CurrentClassProps) {
-    let [currentClass, setCurrentClass] = useState<ClassInfoType>({
-        name: "",
-        period: "",
-        room: "",
-        start: { hour: 0, minute: 0, ampm: AMPM.AM},
-        end: { hour: 0, minute: 0, ampm: AMPM.AM }
-    });
+
+    const [currentClass, setCurrentClass] = useState<ClassInfoType>(NO_CLASS);
 
     const update_current_class = () => {
         const now = new Date();
 
+        const nowMS = now.getTime();
         const activeClasses = classes.filter((classInfo) => {
-            const start = hour12_to_date(classInfo.start);
-            const end = hour12_to_date(classInfo.end);
-            return now >= start && now < end;
+            const start = hour12_to_date(classInfo.start).getTime();
+            const end = hour12_to_date(classInfo.end).getTime();
+
+            if (nowMS >= start && nowMS < end) {
+                console.log(classInfo.name);
+            }
+            return nowMS >= start && nowMS < end;
         });
         
         if (activeClasses.length > 0) {
             const activeClass = activeClasses.reduce((earliest, current) => {
                 const earliestEnd = hour12_to_date(earliest.end);
                 const currentEnd = hour12_to_date(current.end);
+                console.log(earliest.name);
                 return currentEnd < earliestEnd ? current : earliest;
-            });
+            }, NO_CLASS);
             
             if (activeClass && activeClass != currentClass) {
                 setCurrentClass(activeClass);
-                console.log("changed to:", activeClass.name);
             }
         } else if (currentClass.name !== "") {
-            setCurrentClass({
-                name: "", period: "", room: "",
-                start: { hour: 0, minute: 0, ampm: AMPM.AM },
-                end: { hour: 0, minute: 0, ampm: AMPM.AM }
-            });
+            setCurrentClass(NO_CLASS);
         }
     }
 
@@ -104,14 +108,20 @@ function CurrentClass({ classes }: CurrentClassProps) {
                 cancelAnimationFrame(animationRef.current);
             }
         };
-    }, [classes, currentClass]);
+    }, [classes]);
 
     return (
         <div id="CurrentClass">
-            <span>Current Class: {currentClass.name}</span>
-            <span>Period {currentClass.period}</span>
-            <span>Room {currentClass.room}</span>
-            <span>Ends in {untilEnd}</span>
+            {classes.length != 0 && currentClass != NO_CLASS ? (
+                <>
+                    <span>Current Class: {currentClass.name}</span>
+                    <span>Period {currentClass.period}</span>
+                    <span>Room {currentClass.room}</span>
+                    <span>Ends in {untilEnd}</span>
+                </>
+            ) : (
+                <span>You're free! 🥳</span>
+            )}
         </div>
     )
 }
