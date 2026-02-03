@@ -30,15 +30,33 @@ function hour12_to_date(time: Time) {
     return date;
 }
 
-const NO_CLASS = {
-        name: "ERROR",
-        period: "ERROR",
-        room: "ERROR",
-        start: { hour: 99999, minute: 99999, ampm: AMPM.PM},
-        end: { hour: 99999, minute: 99999, ampm: AMPM.PM }
-    } as const;
+const NO_CLASS: ClassInfoType = {
+    name: "ERROR",
+    period: "ERROR",
+    room: "ERROR",
+    start: { hour: 99999, minute: 99999, ampm: AMPM.PM},
+    end: { hour: 99999, minute: 99999, ampm: AMPM.PM }
+} as const;
+
+const EARLY_CLASS: ClassInfoType = {
+    name: "EARLY",
+    period: "EARLY",
+    room: "EARLY",
+    start: { hour: 0, minute: 0, ampm: AMPM.AM},
+    end: { hour: 0, minute: 0, ampm: AMPM.AM }
+} as const;
+
+
+const INBETWEEN_CLASS: ClassInfoType = {
+    name: "INBETWEEN",
+    period: "INBETWEEN",
+    room: "INBETWEEN",
+    start: { hour: 99999, minute: 99999, ampm: AMPM.PM},
+    end: { hour: 99999, minute: 99999, ampm: AMPM.PM }
+} as const;
 
 function CurrentClass({ classes }: CurrentClassProps) {
+    let resolvedClass: ClassInfoType = NO_CLASS;
 
     const [currentClass, setCurrentClass] = useState<ClassInfoType>(NO_CLASS);
 
@@ -46,15 +64,38 @@ function CurrentClass({ classes }: CurrentClassProps) {
         const now = new Date();
 
         const nowMS = now.getTime();
+
+        let earliestClass = { ...NO_CLASS};
+        let latestClass = { ...EARLY_CLASS};
+
         const activeClasses = classes.filter((classInfo) => {
             const start = hour12_to_date(classInfo.start).getTime();
             const end = hour12_to_date(classInfo.end).getTime();
 
-            if (nowMS >= start && nowMS < end) {
-                console.log(classInfo.name);
+            if (
+                earliestClass == NO_CLASS ||
+                start < hour12_to_date(earliestClass.start).getTime()
+            ) {
+                earliestClass = classInfo;
             }
+
+            if (
+                latestClass == EARLY_CLASS ||
+                start > hour12_to_date(latestClass.start).getTime()
+            ) {
+                latestClass = classInfo;
+            }
+
             return nowMS >= start && nowMS < end;
         });
+
+        let schoolStarted = 
+            earliestClass != NO_CLASS &&
+            hour12_to_date(earliestClass.start).getTime() < nowMS;
+        
+        let schoolEnded = 
+            latestClass != EARLY_CLASS &&
+            hour12_to_date(latestClass.start).getTime() > nowMS;
         
         if (activeClasses.length > 0) {
             const activeClass = activeClasses.reduce((earliest, current) => {
@@ -64,17 +105,22 @@ function CurrentClass({ classes }: CurrentClassProps) {
                 return currentEnd < earliestEnd ? current : earliest;
             }, NO_CLASS);
             
-            if (activeClass && activeClass != currentClass) {
+            if (activeClass && activeClass != resolvedClass/*currentClass*/) {
+                resolvedClass = activeClass;
                 setCurrentClass(activeClass);
             }
-        } else if (currentClass.name !== "") {
+        } else if (schoolStarted && !schoolEnded) {
+            resolvedClass = INBETWEEN_CLASS;
+            setCurrentClass(INBETWEEN_CLASS);
+        } else {
+            resolvedClass = NO_CLASS;
             setCurrentClass(NO_CLASS);
         }
     }
 
     const until_class_end = () => {
-        let class_end_date = hour12_to_date(currentClass.end);
-        let ms: number = class_end_date.getTime() - Date.now();
+        let class_end_date = hour12_to_date(/*currentClass*/resolvedClass.end);
+        let ms: number = class_end_date.getTime() - (new Date).getTime();
 
         let hours = Math.floor(ms / 3600000);
         let remainder = ms % 3600000;
@@ -85,10 +131,10 @@ function CurrentClass({ classes }: CurrentClassProps) {
         let padded_mins = String(minutes);
         if (padded_mins.length == 1) { padded_mins = " " + padded_mins; }
 
-        let padded_secs = String(minutes);
+        let padded_secs = String(seconds);
         if (padded_secs.length == 1) { padded_secs = " " + padded_secs; }
 
-        return String(hours)+":"+String(minutes)+":"+String(seconds);
+        return String(hours)+":"+String(padded_mins)+":"+String(padded_secs);
     }
 
     const [untilEnd, setUntilEnd] = useState("");
@@ -112,15 +158,20 @@ function CurrentClass({ classes }: CurrentClassProps) {
 
     return (
         <div id="CurrentClass">
-            {classes.length != 0 && currentClass != NO_CLASS ? (
+            {classes.length == 0 ? (
+                /*currentClass*/resolvedClass == NO_CLASS ? (
+                    <span>You're free! 🥳</span>
+                ) : (
+                    <span>Inbetween Classes...</span>
+                )
+                
+            ) : (
                 <>
                     <span>Current Class: {currentClass.name}</span>
                     <span>Period {currentClass.period}</span>
                     <span>Room {currentClass.room}</span>
                     <span>Ends in {untilEnd}</span>
                 </>
-            ) : (
-                <span>You're free! 🥳</span>
             )}
         </div>
     )
